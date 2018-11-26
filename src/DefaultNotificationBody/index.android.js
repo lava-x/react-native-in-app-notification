@@ -1,39 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { TouchableOpacity, View, Text, Image, Vibration } from 'react-native';
-import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
+import React from "react";
+import PropTypes from "prop-types";
+import { TouchableOpacity, View, Text, Image, Vibration } from "react-native";
+import GestureRecognizer, {
+  swipeDirections
+} from "react-native-swipe-gestures";
 
 const styles = {
-  container: {
-    flex: 1,
-  },
   content: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: "row"
   },
   iconContainer: {
     width: 60,
     height: 70,
     marginTop: 5,
-    marginLeft: 10,
+    marginLeft: 10
   },
   icon: {
-    resizeMode: 'contain',
+    resizeMode: "contain",
     width: 60,
-    height: 70,
+    height: 70
   },
   textContainer: {
-    alignSelf: 'center',
-    marginLeft: 20,
-  },
-  title: {
-    color: '#000',
-    fontWeight: 'bold',
-  },
-  message: {
-    color: '#000',
-    marginTop: 5,
-  },
+    alignSelf: "center",
+    marginLeft: 20
+  }
 };
 
 class DefaultNotificationBody extends React.Component {
@@ -45,16 +36,17 @@ class DefaultNotificationBody extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if ((prevProps.vibrate || this.props.vibrate) && this.props.isOpen && !prevProps.isOpen) {
+    if (
+      (prevProps.vibrate || this.props.vibrate) &&
+      this.props.isOpen &&
+      !prevProps.isOpen
+    ) {
       Vibration.vibrate();
     }
   }
 
   onNotificationPress() {
-    const {
-      onPress,
-      onClose,
-    } = this.props;
+    const { onPress, onClose } = this.props;
 
     onClose();
     onPress();
@@ -75,10 +67,16 @@ class DefaultNotificationBody extends React.Component {
       message,
       iconApp,
       icon,
+      containerStyle,
+      titleStyle,
+      messageStyle
     } = this.props;
 
     return (
-      <GestureRecognizer onSwipe={this.onSwipe} style={styles.container}>
+      <GestureRecognizer
+        onSwipe={this.onSwipe}
+        style={[containerStyle, { flex: 1 }]}
+      >
         <TouchableOpacity
           style={styles.content}
           activeOpacity={0.3}
@@ -86,11 +84,20 @@ class DefaultNotificationBody extends React.Component {
           onPress={this.onNotificationPress}
         >
           <View style={styles.iconContainer}>
-            {(icon || iconApp) && <Image source={icon || iconApp} style={styles.icon} />}
+            {(icon || iconApp) && (
+              <Image source={icon || iconApp} style={styles.icon} />
+            )}
           </View>
           <View style={styles.textContainer}>
-            <Text numberOfLines={1} style={styles.title}>{title}</Text>
-            <Text numberOfLines={1} style={styles.message}>{message}</Text>
+            <Text
+              numberOfLines={1}
+              style={[titleStyle, { fontWeight: "bold" }]}
+            >
+              {title}
+            </Text>
+            <Text numberOfLines={1} style={[messageStyle, { marginTop: 5 }]}>
+              {message}
+            </Text>
           </View>
         </TouchableOpacity>
       </GestureRecognizer>
@@ -106,18 +113,18 @@ DefaultNotificationBody.propTypes = {
   onPress: PropTypes.func,
   onClose: PropTypes.func,
   iconApp: Image.propTypes.source,
-  icon: Image.propTypes.source,
+  icon: Image.propTypes.source
 };
 
 DefaultNotificationBody.defaultProps = {
-  title: 'Notification',
-  message: 'This is a test notification',
+  title: "Notification",
+  message: "This is a test notification",
   vibrate: true,
   isOpen: false,
   iconApp: null,
   icon: null,
   onPress: () => null,
-  onClose: () => null,
+  onClose: () => null
 };
 
 export default DefaultNotificationBody;
