@@ -33,7 +33,6 @@ class Notification extends Component {
       title,
       message,
       closeInterval,
-      transformColor,
       containerStyle,
       titleStyle,
       messageStyle,
@@ -44,7 +43,6 @@ class Notification extends Component {
       title: "",
       message: "",
       closeInterval: "",
-      transformColor: "white",
       containerStyle: "",
       titleStyle: "",
       messageStyle: "",
@@ -53,7 +51,6 @@ class Notification extends Component {
       vibrate: true
     }
   ) {
-    // const { closeInterval } = this.props;
     const { isOpen } = this.state;
 
     // Clear any currently showing notification timeouts so the new one doesn't get prematurely
@@ -67,7 +64,6 @@ class Notification extends Component {
           title,
           message,
           containerStyle,
-          transformColor,
           titleStyle,
           messageStyle,
           onPress,
@@ -82,8 +78,7 @@ class Notification extends Component {
                   isOpen: false,
                   title: "",
                   message: "",
-                  containerStyle: "",
-                  transformColor,
+                  containerStyle,
                   titleStyle: "",
                   messageStyle: "",
                   onPress: null,
@@ -126,7 +121,6 @@ class Notification extends Component {
     const {
       height: baseHeight,
       topOffset,
-      // backgroundColour,
       iconApp,
       notificationBodyComponent: NotificationBody
     } = this.props;
@@ -135,7 +129,6 @@ class Notification extends Component {
       animatedValue,
       title,
       message,
-      transformColor,
       containerStyle,
       titleStyle,
       messageStyle,
@@ -190,11 +183,9 @@ class Notification extends Component {
 }
 
 Notification.propTypes = {
-  // closeInterval: PropTypes.number,
   openCloseDuration: PropTypes.number,
   height: PropTypes.number,
   topOffset: PropTypes.number,
-  // backgroundColour: PropTypes.string,
   notificationBodyComponent: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.func
@@ -203,11 +194,9 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
-  // closeInterval: 4000,
   openCloseDuration: 200,
   height: 80,
   topOffset: 0,
-  // backgroundColour: 'white',
   notificationBodyComponent: DefaultNotificationBody,
   iconApp: null
 };
