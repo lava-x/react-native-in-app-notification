@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Animated, StyleSheet, Image } from "react-native";
+import { Animated, Image, Platform, NativeModules } from "react-native";
 import { getStatusBarHeight, isIphoneX } from "react-native-iphone-x-helper";
 
 import DefaultNotificationBody from "./DefaultNotificationBody";
 
-const styles = StyleSheet.create({
-  notification: {
-    position: "absolute",
-    width: "100%"
-  }
-});
+const { StatusBarManager } = NativeModules;
+
+const STATUS_BAR_HEIGHT =
+  Platform.OS === "ios" ? (isIphoneX() ? 44 : 20) : StatusBarManager.HEIGHT;
 
 class Notification extends Component {
   constructor() {
@@ -85,7 +83,7 @@ class Notification extends Component {
                   titleStyle: "",
                   messageStyle: "",
                   iosFooter: "false",
-                  onPress: null,
+                  onPress,
                   icon: null,
                   vibrate: true
                 },
@@ -124,7 +122,6 @@ class Notification extends Component {
   render() {
     const {
       height: baseHeight,
-      topOffset,
       iconApp,
       notificationBodyComponent: NotificationBody
     } = this.props;
@@ -148,8 +145,10 @@ class Notification extends Component {
     return (
       <Animated.View
         style={[
-          styles.notification,
+          containerStyle,
           {
+            position: "absolute",
+            width: "97%",
             height,
             backgroundColor: containerStyle
               ? containerStyle["backgroundColor"]
@@ -160,7 +159,10 @@ class Notification extends Component {
               {
                 translateY: animatedValue.interpolate({
                   inputRange: [0, 1],
-                  outputRange: [-height + topOffset, 0]
+                  outputRange: [
+                    -height - STATUS_BAR_HEIGHT - 7,
+                    STATUS_BAR_HEIGHT
+                  ]
                 })
               }
             ]
@@ -170,7 +172,6 @@ class Notification extends Component {
         <NotificationBody
           title={title}
           message={message}
-          containerStyle={containerStyle}
           titleStyle={titleStyle}
           messageStyle={messageStyle}
           iosFooter={iosFooter}
@@ -191,7 +192,6 @@ class Notification extends Component {
 Notification.propTypes = {
   openCloseDuration: PropTypes.number,
   height: PropTypes.number,
-  topOffset: PropTypes.number,
   notificationBodyComponent: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.func
@@ -201,8 +201,7 @@ Notification.propTypes = {
 
 Notification.defaultProps = {
   openCloseDuration: 200,
-  height: 80,
-  topOffset: 0,
+  height: 60,
   notificationBodyComponent: DefaultNotificationBody,
   iconApp: null
 };

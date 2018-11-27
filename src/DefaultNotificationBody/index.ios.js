@@ -1,13 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  TouchableOpacity,
-  StatusBar,
-  View,
-  Text,
-  Image,
-  Vibration
-} from "react-native";
+import { TouchableOpacity, View, Text, Image, Vibration } from "react-native";
 import { getStatusBarHeight, isIphoneX } from "react-native-iphone-x-helper";
 import GestureRecognizer, {
   swipeDirections
@@ -16,7 +9,7 @@ import GestureRecognizer, {
 const styles = {
   container: {
     position: "absolute",
-    top: isIphoneX() && getStatusBarHeight(),
+    top: 0,
     bottom: 0,
     left: 0,
     right: 0
@@ -63,10 +56,6 @@ class DefaultNotificationBody extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.isOpen !== prevProps.isOpen) {
-      StatusBar.setHidden(this.props.isOpen);
-    }
-
     if (
       (prevProps.vibrate || this.props.vibrate) &&
       this.props.isOpen &&
@@ -110,39 +99,31 @@ class DefaultNotificationBody extends React.Component {
   }
 
   render() {
-    const {
-      title,
-      message,
-      containerStyle,
-      titleStyle,
-      messageStyle
-    } = this.props;
+    const { title, message, titleStyle, messageStyle } = this.props;
 
     return (
-      <View style={[containerStyle, { flex: 1 }]}>
-        <GestureRecognizer onSwipe={this.onSwipe} style={styles.container}>
-          <TouchableOpacity
-            style={styles.content}
-            activeOpacity={0.3}
-            underlayColor="transparent"
-            onPress={this.onNotificationPress}
-          >
-            {this.renderIcon()}
-            <View style={styles.textContainer}>
-              <Text
-                numberOfLines={1}
-                style={[titleStyle, { fontWeight: "bold" }]}
-              >
-                {title}
-              </Text>
-              <Text numberOfLines={1} style={[messageStyle, { marginTop: 5 }]}>
-                {message}
-              </Text>
-            </View>
-          </TouchableOpacity>
-          {this.renderFooter()}
-        </GestureRecognizer>
-      </View>
+      <GestureRecognizer onSwipe={this.onSwipe} style={styles.container}>
+        <TouchableOpacity
+          style={styles.content}
+          activeOpacity={0.3}
+          underlayColor="transparent"
+          onPress={this.onNotificationPress}
+        >
+          {this.renderIcon()}
+          <View style={styles.textContainer}>
+            <Text
+              numberOfLines={1}
+              style={[titleStyle, { fontWeight: "bold" }]}
+            >
+              {title}
+            </Text>
+            <Text numberOfLines={1} style={[messageStyle, { marginTop: 5 }]}>
+              {message}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        {this.renderFooter()}
+      </GestureRecognizer>
     );
   }
 }

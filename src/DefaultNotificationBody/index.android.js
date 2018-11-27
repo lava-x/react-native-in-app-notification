@@ -67,16 +67,12 @@ class DefaultNotificationBody extends React.Component {
       message,
       iconApp,
       icon,
-      containerStyle,
       titleStyle,
       messageStyle
     } = this.props;
 
     return (
-      <GestureRecognizer
-        onSwipe={this.onSwipe}
-        style={[containerStyle, { flex: 1 }]}
-      >
+      <GestureRecognizer onSwipe={this.onSwipe} style={{ flex: 1 }}>
         <TouchableOpacity
           style={styles.content}
           activeOpacity={0.3}
