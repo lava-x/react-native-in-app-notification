@@ -4,6 +4,7 @@ import { TouchableOpacity, View, Text, Image, Vibration } from "react-native";
 import GestureRecognizer, {
   swipeDirections
 } from "react-native-swipe-gestures";
+import { Icon } from "react-native-elements";
 
 const styles = {
   content: {
@@ -23,7 +24,13 @@ const styles = {
   },
   textContainer: {
     alignSelf: "center",
-    marginLeft: 20
+    marginLeft: 20,
+    flex: 1
+  },
+  inner: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: 10
   }
 };
 
@@ -94,6 +101,11 @@ class DefaultNotificationBody extends React.Component {
             <Text numberOfLines={1} style={[messageStyle, { marginTop: 5 }]}>
               {message}
             </Text>
+          </View>
+          <View style={styles.inner}>
+            <TouchableOpacity onPress={null}>
+              <Icon name="close" type="material-community" size={20} />
+            </TouchableOpacity>
           </View>
         </TouchableOpacity>
       </GestureRecognizer>

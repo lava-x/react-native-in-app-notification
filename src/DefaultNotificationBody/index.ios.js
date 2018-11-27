@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TouchableOpacity, View, Text, Image, Vibration } from "react-native";
-import { getStatusBarHeight, isIphoneX } from "react-native-iphone-x-helper";
 import GestureRecognizer, {
   swipeDirections
 } from "react-native-swipe-gestures";
+import { Icon } from "react-native-elements";
 
 const styles = {
   container: {
@@ -35,7 +35,13 @@ const styles = {
   },
   textContainer: {
     alignSelf: "center",
-    marginLeft: 20
+    marginLeft: 20,
+    flex: 1
+  },
+  inner: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: 10
   },
   footer: {
     backgroundColor: "#696969",
@@ -103,11 +109,10 @@ class DefaultNotificationBody extends React.Component {
 
     return (
       <GestureRecognizer onSwipe={this.onSwipe} style={styles.container}>
-        <TouchableOpacity
+        <View
           style={styles.content}
-          activeOpacity={0.3}
-          underlayColor="transparent"
-          onPress={this.onNotificationPress}
+
+          // onPress={this.onNotificationPress}
         >
           {this.renderIcon()}
           <View style={styles.textContainer}>
@@ -121,7 +126,16 @@ class DefaultNotificationBody extends React.Component {
               {message}
             </Text>
           </View>
-        </TouchableOpacity>
+          <View style={styles.inner}>
+            <TouchableOpacity
+              onPress={this.onNotificationPress}
+              activeOpacity={0.3}
+              underlayColor="transparent"
+            >
+              <Icon name="close" type="material-community" size={20} />
+            </TouchableOpacity>
+          </View>
+        </View>
         {this.renderFooter()}
       </GestureRecognizer>
     );
