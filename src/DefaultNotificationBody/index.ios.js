@@ -103,6 +103,12 @@ class DefaultNotificationBody extends React.Component {
     return null;
   }
 
+  renderFooter() {
+    const { iosFooter } = this.props;
+    if (!iosFooter) return null;
+    return <View style={styles.footer} />;
+  }
+
   render() {
     const {
       title,
@@ -134,8 +140,7 @@ class DefaultNotificationBody extends React.Component {
               </Text>
             </View>
           </TouchableOpacity>
-
-          <View style={styles.footer} />
+          {this.renderFooter()}
         </GestureRecognizer>
       </View>
     );

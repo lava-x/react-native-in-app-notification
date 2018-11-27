@@ -36,6 +36,7 @@ class Notification extends Component {
       containerStyle,
       titleStyle,
       messageStyle,
+      iosFooter,
       onPress,
       icon,
       vibrate
@@ -46,6 +47,7 @@ class Notification extends Component {
       containerStyle: "",
       titleStyle: "",
       messageStyle: "",
+      iosFooter: "true",
       onPress: null,
       icon: null,
       vibrate: true
@@ -66,6 +68,7 @@ class Notification extends Component {
           containerStyle,
           titleStyle,
           messageStyle,
+          iosFooter,
           onPress,
           icon,
           vibrate
@@ -81,6 +84,7 @@ class Notification extends Component {
                   containerStyle,
                   titleStyle: "",
                   messageStyle: "",
+                  iosFooter: "false",
                   onPress: null,
                   icon: null,
                   vibrate: true
@@ -132,6 +136,7 @@ class Notification extends Component {
       containerStyle,
       titleStyle,
       messageStyle,
+      iosFooter,
       onPress,
       isOpen,
       icon,
@@ -168,6 +173,7 @@ class Notification extends Component {
           containerStyle={containerStyle}
           titleStyle={titleStyle}
           messageStyle={messageStyle}
+          iosFooter={iosFooter}
           onPress={onPress}
           isOpen={isOpen}
           iconApp={iconApp}
