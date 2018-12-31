@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TouchableOpacity, View, Text, Image, Vibration } from "react-native";
+// import { TouchableOpacity, View, Text, Image, Vibration } from 'react-native';
+import { TouchableOpacity, View, Text, Vibration } from "react-native";
+
 import GestureRecognizer, {
   swipeDirections
 } from "react-native-swipe-gestures";
@@ -17,11 +19,11 @@ const styles = {
     marginTop: 5,
     marginLeft: 10
   },
-  icon: {
-    resizeMode: "contain",
-    width: 60,
-    height: 70
-  },
+  // icon: {
+  //   resizeMode: 'contain',
+  //   width: 60,
+  //   height: 70,
+  // },
   textContainer: {
     alignSelf: "center",
     marginLeft: 20,
@@ -72,8 +74,8 @@ class DefaultNotificationBody extends React.Component {
     const {
       title,
       message,
-      iconApp,
-      icon,
+      // iconApp,
+      // icon,
       titleStyle,
       messageStyle
     } = this.props;
@@ -86,11 +88,11 @@ class DefaultNotificationBody extends React.Component {
           underlayColor="transparent"
           onPress={this.onNotificationPress}
         >
-          <View style={styles.iconContainer}>
+          {/* <View style={styles.iconContainer}>
             {(icon || iconApp) && (
               <Image source={icon || iconApp} style={styles.icon} />
             )}
-          </View>
+          </View> */}
           <View style={styles.textContainer}>
             <Text
               numberOfLines={1}
@@ -119,9 +121,9 @@ DefaultNotificationBody.propTypes = {
   vibrate: PropTypes.bool,
   isOpen: PropTypes.bool,
   onPress: PropTypes.func,
-  onClose: PropTypes.func,
-  iconApp: Image.propTypes.source,
-  icon: Image.propTypes.source
+  onClose: PropTypes.func
+  // iconApp: Image.propTypes.source,
+  // icon: Image.propTypes.source,
 };
 
 DefaultNotificationBody.defaultProps = {
@@ -129,8 +131,8 @@ DefaultNotificationBody.defaultProps = {
   message: "This is a test notification",
   vibrate: true,
   isOpen: false,
-  iconApp: null,
-  icon: null,
+  // iconApp: null,
+  // icon: null,
   onPress: () => null,
   onClose: () => null
 };
