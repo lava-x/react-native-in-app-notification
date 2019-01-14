@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 // import { TouchableOpacity, View, Text, Image, Vibration } from 'react-native';
-import { TouchableOpacity, View, Text, Vibration } from "react-native";
+import { TouchableOpacity, View, Text } from "react-native";
 
 import GestureRecognizer, {
   swipeDirections
@@ -44,15 +44,17 @@ class DefaultNotificationBody extends React.Component {
     this.onSwipe = this.onSwipe.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    if (
-      (prevProps.vibrate || this.props.vibrate) &&
-      this.props.isOpen &&
-      !prevProps.isOpen
-    ) {
-      Vibration.vibrate();
-    }
-  }
+  // Disabled android vibration
+
+  // componentDidUpdate(prevProps) {
+  //   if (
+  //     (prevProps.vibrate || this.props.vibrate) &&
+  //     this.props.isOpen &&
+  //     !prevProps.isOpen
+  //   ) {
+  //     Vibration.vibrate();
+  //   }
+  // }
 
   onNotificationPress() {
     const { onPress, onClose } = this.props;
