@@ -61,15 +61,15 @@ class DefaultNotificationBody extends React.Component {
     this.onSwipe = this.onSwipe.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    if (
-      (prevProps.vibrate || this.props.vibrate) &&
-      this.props.isOpen &&
-      !prevProps.isOpen
-    ) {
-      Vibration.vibrate();
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (
+  //     (prevProps.vibrate || this.props.vibrate) &&
+  //     this.props.isOpen &&
+  //     !prevProps.isOpen
+  //   ) {
+  //     Vibration.vibrate();
+  //   }
+  // }
 
   onNotificationPress() {
     const { onPress, onClose } = this.props;
@@ -145,7 +145,7 @@ class DefaultNotificationBody extends React.Component {
 DefaultNotificationBody.propTypes = {
   title: PropTypes.string,
   message: PropTypes.string,
-  vibrate: PropTypes.bool,
+  // vibrate: PropTypes.bool,
   isOpen: PropTypes.bool,
   onPress: PropTypes.func,
   onClose: PropTypes.func,
@@ -156,7 +156,7 @@ DefaultNotificationBody.propTypes = {
 DefaultNotificationBody.defaultProps = {
   title: "Notification",
   message: "This is a test notification",
-  vibrate: true,
+  // vibrate: true,
   isOpen: false,
   iconApp: null,
   icon: null,

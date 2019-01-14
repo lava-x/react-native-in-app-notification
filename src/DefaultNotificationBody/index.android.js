@@ -102,7 +102,7 @@ class DefaultNotificationBody extends React.Component {
             >
               {title}
             </Text>
-            <Text numberOfLines={1} style={[messageStyle, { marginTop: 5 }]}>
+            <Text numberOfLines={2} style={[messageStyle, { marginTop: 5 }]}>
               {message}
             </Text>
           </View>
@@ -120,7 +120,7 @@ class DefaultNotificationBody extends React.Component {
 DefaultNotificationBody.propTypes = {
   title: PropTypes.string,
   message: PropTypes.string,
-  vibrate: PropTypes.bool,
+  // vibrate: PropTypes.bool,
   isOpen: PropTypes.bool,
   onPress: PropTypes.func,
   onClose: PropTypes.func
@@ -131,7 +131,7 @@ DefaultNotificationBody.propTypes = {
 DefaultNotificationBody.defaultProps = {
   title: "Notification",
   message: "This is a test notification",
-  vibrate: true,
+  // vibrate: true,
   isOpen: false,
   // iconApp: null,
   // icon: null,
