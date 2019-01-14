@@ -201,7 +201,7 @@ Notification.propTypes = {
 
 Notification.defaultProps = {
   openCloseDuration: 200,
-  height: 60,
+  height: Platform.OS === "ios" ? 60 : 80,
   notificationBodyComponent: DefaultNotificationBody,
   iconApp: null
 };
