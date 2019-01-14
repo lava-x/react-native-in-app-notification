@@ -122,7 +122,7 @@ class DefaultNotificationBody extends React.Component {
             >
               {title}
             </Text>
-            <Text numberOfLines={1} style={[messageStyle, { marginTop: 5 }]}>
+            <Text numberOfLines={2} style={[messageStyle, { marginTop: 5 }]}>
               {message}
             </Text>
           </View>
