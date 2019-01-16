@@ -67,7 +67,7 @@ class DefaultNotificationBody extends React.Component {
     const { onClose } = this.props;
     const { SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
 
-    if (direction === SWIPE_RIGHT || direction === SWIPE_LEFT) {
+    if (direction === SWIPE_LEFT || direction === SWIPE_RIGHT) {
       onClose();
     }
   }
@@ -84,10 +84,10 @@ class DefaultNotificationBody extends React.Component {
 
     return (
       <GestureRecognizer onSwipe={this.onSwipe} style={{ flex: 1 }}>
-        <TouchableOpacity
+        <View
           style={styles.content}
-          activeOpacity={0.3}
-          underlayColor="transparent"
+
+          // onPress={this.onNotificationPress}
         >
           {/* <View style={styles.iconContainer}>
             {(icon || iconApp) && (
@@ -110,7 +110,7 @@ class DefaultNotificationBody extends React.Component {
               <Icon name="close" type="material-community" size={20} />
             </TouchableOpacity>
           </View>
-        </TouchableOpacity>
+        </View>
       </GestureRecognizer>
     );
   }
