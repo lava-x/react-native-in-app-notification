@@ -88,7 +88,6 @@ class DefaultNotificationBody extends React.Component {
           style={styles.content}
           activeOpacity={0.3}
           underlayColor="transparent"
-          onPress={this.onNotificationPress}
         >
           {/* <View style={styles.iconContainer}>
             {(icon || iconApp) && (
