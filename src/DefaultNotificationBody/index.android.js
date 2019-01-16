@@ -107,7 +107,7 @@ class DefaultNotificationBody extends React.Component {
             </Text>
           </View>
           <View style={styles.inner}>
-            <TouchableOpacity onPress={null}>
+            <TouchableOpacity onPress={this.onNotificationPress}>
               <Icon name="close" type="material-community" size={20} />
             </TouchableOpacity>
           </View>
