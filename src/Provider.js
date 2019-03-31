@@ -15,7 +15,7 @@ class Provider extends React.PureComponent {
 
   checkLastAction = notificationOptions => {
     if (
-      Date.now() - this.lastAction.timestamp < 8000 &&
+      Date.now() - this.lastAction.timestamp < notificationOptions.throttle &&
       _.isEqual(notificationOptions, this.lastAction.notificationOptions)
     ) {
       return false;
@@ -30,7 +30,8 @@ class Provider extends React.PureComponent {
       if (
         !this.checkLastAction({
           title: notificationOptions.title,
-          message: notificationOptions.message
+          message: notificationOptions.message,
+          throttle: notificationOptions.throttle
         })
       ) {
         return null;
