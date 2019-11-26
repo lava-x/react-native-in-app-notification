@@ -1186,10 +1186,9 @@ react-native-elements@^0.19.1:
     opencollective "^1.0.3"
     prop-types "^15.5.8"
 
-react-native-iphone-x-helper@^1.2.0:
+react-native-iphone-x-helper@lava-x/react-native-iphone-x-helper:
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.0.tgz#9f8a376eb00bc712115abff4420318a0063fa796"
-  integrity sha512-xIeTo4s77wwKgBZLVRIZC9tM9/PkXS46Ul76NXmvmixEb3ZwqGdQesR3zRiLMOoIdfOURB6N9bba9po7+x9Bag==
+  resolved "https://codeload.github.com/lava-x/react-native-iphone-x-helper/tar.gz/33e803a6d810f77fdf5ec6fecab729c7f87ac91b"
 
 react-native-swipe-gestures@^1.0.2:
   version "1.0.2"
