@@ -27,20 +27,9 @@ class Notification extends Component {
   }
 
   show(
-    {
-      title,
-      message,
-      closeInterval,
-      containerStyle,
-      titleStyle,
-      messageStyle,
-      iosFooter,
-      onPress,
-      icon,
-      vibrate
-    } = {
-      title: "",
-      message: "",
+    { title, message, closeInterval, containerStyle, titleStyle, messageStyle, iosFooter, onPress, icon, vibrate, additionalProps } = {
+      title: '',
+      message: '',
       closeInterval: "",
       containerStyle: "",
       titleStyle: "",
@@ -48,8 +37,9 @@ class Notification extends Component {
       iosFooter: "true",
       onPress: null,
       icon: null,
-      vibrate: true
-    }
+      vibrate: true,
+      additionalProps: {},
+    },
   ) {
     const { isOpen } = this.state;
 
@@ -69,28 +59,29 @@ class Notification extends Component {
           iosFooter,
           onPress,
           icon,
-          vibrate
+          vibrate,
+          additionalProps,
         },
-        () =>
-          this.showNotification(() => {
-            this.currentNotificationInterval = setTimeout(() => {
-              this.setState(
-                {
-                  isOpen: false,
-                  title: "",
-                  message: "",
-                  containerStyle,
-                  titleStyle: "",
-                  messageStyle: "",
-                  iosFooter: "false",
-                  onPress,
-                  icon: null,
-                  vibrate: true
-                },
-                this.closeNotification
-              );
-            }, closeInterval);
-          })
+        () => this.showNotification(() => {
+          this.currentNotificationInterval = setTimeout(() => {
+            this.setState(
+              {
+                isOpen: false,
+                title: '',
+                message: '',
+                containerStyle,
+                titleStyle: "",
+                messageStyle: "",
+                iosFooter: "false",
+                onPress,
+                icon: null,
+                vibrate: true,
+                additionalProps,
+              },
+              this.closeNotification,
+            );
+          }, closeInterval);
+        }),
       );
     };
 
@@ -107,7 +98,7 @@ class Notification extends Component {
     Animated.timing(this.state.animatedValue, {
       toValue: 1,
       duration: this.props.openCloseDuration,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start(done);
   }
 
@@ -115,7 +106,7 @@ class Notification extends Component {
     Animated.timing(this.state.animatedValue, {
       toValue: 0,
       duration: this.props.openCloseDuration,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start(done);
   }
 
@@ -180,9 +171,8 @@ class Notification extends Component {
           iconApp={iconApp}
           icon={icon}
           vibrate={vibrate}
-          onClose={() =>
-            this.setState({ isOpen: false }, this.closeNotification)
-          }
+          onClose={() => this.setState({ isOpen: false }, this.closeNotification)}
+          additionalProps={this.state.additionalProps}
         />
       </Animated.View>
     );
